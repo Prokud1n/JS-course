@@ -4,7 +4,7 @@
     "outDir": "./build/",
     "sourceMap": true,
     "incremental": true,
-    "target": "es5",
+    "target": "es2020",
     "module": "commonjs",
     "moduleResolution": "node",
     "lib": ["es2015", "es7", "dom", "es2018.promise", "ESNext.String"],

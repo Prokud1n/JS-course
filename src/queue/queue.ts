@@ -1,4 +1,4 @@
-import {LinkedItem, LinkedList} from "../linked-list";
+import {LinkedList} from "../linked-list";
 
 export class Queue {
     queue: LinkedList;
@@ -16,26 +16,16 @@ export class Queue {
     }
 
     push = (value) => {
-        const item = new LinkedItem(value);
-
-        if (this.queue.first == null) {
-            this.queue.first = item;
-        } else {
-            item.prev = this.queue.last;
-            this.queue.last.next = item;
-        }
-
-        this.queue.last = item;
+        this.queue.add(value);
     }
 
     pop = () => {
-        if (!this.queue.first) {
+        if (this.queue.isEmpty) {
             throw new Error('Queue is empty');
         }
-        const first = this.queue.first;
         const value = this.queue.first.value;
 
-        this.queue.delete(first);
+        this.queue.shift();
 
         return value;
     }

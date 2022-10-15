@@ -1,25 +1,23 @@
-import { Queue } from "./queue";
+import { Dequeue } from "./dequeue";
 
-const queue = new Queue();
+const dequeue = new Dequeue();
 
-queue.push(10);
-queue.push(11);
-queue.push(12);
+dequeue.push(10);
+dequeue.unshift(11);
+dequeue.push(12);
 
-console.log(queue.head);  // 10
+console.log(dequeue.pop());   // 12
+console.log(dequeue.shift()); // 11
+console.log(dequeue.pop());   // 10
+console.log(dequeue.pop());   // Exception
 
-console.log(queue.pop()); // 10
+// console.log(list.first.value);           // 1
+// console.log(list.last.value);            // 3
+// console.log(list.first.next.value);      // 2
+// console.log(list.first.next.prev.value); // 1
 
-console.log(queue.head);  // 11
 
-console.log(queue.pop()); // 11
-console.log(queue.pop()); // 12
-
-try {
-    queue.pop();
-} catch (e) {
-    console.log(e);
-}
 
 export { LinkedList } from "./linked-list";
 export { Queue } from "./queue"
+export { Dequeue } from "./dequeue";

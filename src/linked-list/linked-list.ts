@@ -1,3 +1,29 @@
+// const a = {
+//     prev: null,
+//     next: b,
+//     value: 1,
+// }
+//
+// const b = {
+//     prev: a,
+//     next: c,
+//     value: 2,
+// }
+//
+//
+// const c = {
+//     prev: b,
+//     next: d,
+//     value: 3,
+// }
+//
+// const d = {
+//     prev: c,
+//     next: null,
+//     value: 4,
+// }
+
+
 class LinkedItem {
     value = null;
     prev = null;
@@ -16,6 +42,10 @@ class LinkedList {
         return this.current.next;
     }
 
+    get isEmpty() {
+        return this.first == null;
+    }
+
     add = (value) => {
         const item = new LinkedItem(value);
         if (this.first == null) {
@@ -28,27 +58,42 @@ class LinkedList {
         this.last = item;
     }
 
-    delete = (value) => {
-        if (value instanceof LinkedItem) {
-            const prevItem = value.prev;
-            const nextItem = value.next;
+    delete = (linkedItem: LinkedItem) => {
+        if (linkedItem instanceof LinkedItem) {
+            const isLast = linkedItem === this.last;
+            const isFirst = linkedItem === this.first;
+            const prevItem = linkedItem.prev;
+            const nextItem = linkedItem.next;
 
             if (prevItem != null) {
-                prevItem.next = value.next;
+                prevItem.next = linkedItem.next;
+                console.log(prevItem);
             }
 
             if (nextItem != null) {
-                nextItem.prev = value.prev;
+                nextItem.prev = linkedItem.prev;
             }
 
-            if (this.first.value === value.value) {
-                this.first = this.first.next;
+            if (isLast) {
+                this.last = prevItem;
+            }
+
+            if (isFirst) {
+                this.first = nextItem;
             }
 
             return true;
         }
 
         return false;
+    }
+
+    pop = () => {
+        return this.delete(this.last);
+    }
+
+    shift = () => {
+        return this.delete(this.first);
     }
 
     * values() {
@@ -63,18 +108,5 @@ class LinkedList {
         return this.values();
     }
 }
-
-const list = new LinkedList();
-
-list.add(1);
-list.add(2);
-list.add(3);
-list.add(4);
-
-// const r = list.delete(list.first.next);
-
-// for (const value of list) {
-//     console.log(value);
-// }
 
 export { LinkedList, LinkedItem };
