@@ -67,7 +67,6 @@ class LinkedList {
 
             if (prevItem != null) {
                 prevItem.next = linkedItem.next;
-                console.log(prevItem);
             }
 
             if (nextItem != null) {
