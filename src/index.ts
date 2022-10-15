@@ -1,20 +1,15 @@
-import { Stack } from "./stack"
-const stack = new Stack();
+import {Structure} from "./structure";
+const jackBlack = new Structure(['name', 'lastName', 'age']);
 
-stack.push(10);
-stack.push(11);
-stack.push(12);
+jackBlack.set('name', 'Jack');
+jackBlack.set('lastName', 'Black');
+jackBlack.set('age', 53);
 
-console.log(stack.head);  // 12
+console.log(jackBlack.get('name'));// 'Jack'
+console.log(jackBlack.get('lastName'));// 'Jack'
+console.log(jackBlack.get('age'));// 'Jack'
 
-console.log(stack.pop()); // 12
-
-console.log(stack.head);  // 11
-
-console.log(stack.pop()); // 11
-console.log(stack.pop()); // 10
-console.log(stack.pop()); // Exception
-
+export { Structure } from "./structure"
 export { LinkedList } from "./linked-list";
 export { Queue } from "./queue"
 export { Dequeue } from "./dequeue";
