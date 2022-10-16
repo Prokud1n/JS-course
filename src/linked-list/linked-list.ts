@@ -1,7 +1,7 @@
 import {LinkedItem} from "./linked-item";
 import * as Interfaces from "./interface";
 
-class LinkedList<T> implements Interfaces.LinkedList<T>{
+class LinkedList<T> implements Interfaces.LinkedList<T> {
     first = null;
     last = null;
 
@@ -21,7 +21,7 @@ class LinkedList<T> implements Interfaces.LinkedList<T>{
         this.last = item;
     }
 
-    delete = (linkedItem: LinkedItem) => {
+    delete = (linkedItem) => {
         if (linkedItem instanceof LinkedItem) {
             const isLast = linkedItem === this.last;
             const isFirst = linkedItem === this.first;
