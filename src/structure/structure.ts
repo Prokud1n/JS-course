@@ -1,11 +1,11 @@
 import * as Interfaces from "./interfaces";
 
 class Structure<T> implements Interfaces.Structure<T>{
-    #structure: Array<any>;
+    #structure: Array<T>;
 
-    #getIndexByField: any;
+    #getIndexByField: Interfaces.GetIndexByField;
 
-    #initFunctionBodyToFindingIndex = (keys: string[]) => {
+    #initFunctionBodyToFindingIndex = (keys: Array<T>) => {
         const cases = keys.map((key, index) => `case '${key}': return ${index};`).join('\n');
 
         return ` {
@@ -18,10 +18,10 @@ class Structure<T> implements Interfaces.Structure<T>{
         `;
     };
 
-    constructor(fields: string[]) {
+    constructor(fields: Array<T>) {
         this.#structure = Array(fields.length);
 
-        this.#getIndexByField = new Function('key', this.#initFunctionBodyToFindingIndex(fields));
+        this.#getIndexByField = <Interfaces.GetIndexByField>new Function('key', this.#initFunctionBodyToFindingIndex(fields));
     }
 
     set = (field, value) => {
