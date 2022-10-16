@@ -1,7 +1,8 @@
 import {LinkedItem, LinkedList} from "../linked-list";
+import * as Interfaces from "./interfaces";
 
-class Dequeue {
-    dequeue: LinkedList;
+class Dequeue<T> implements Interfaces.Dequeue<T> {
+    dequeue: LinkedList<T>;
     #dequeueLength = 0;
 
     constructor() {
@@ -20,13 +21,12 @@ class Dequeue {
         return this.#dequeueLength;
     }
 
-    push = (value) => {
+    push = (value: T) => {
         this.dequeue.add(value);
         this.#dequeueLength++;
-
     }
 
-    unshift = (value) => {
+    unshift = (value: T) => {
         const item = new LinkedItem(value);
 
         if (this.dequeue.first == null) {
@@ -47,7 +47,7 @@ class Dequeue {
         if (!this.dequeue.first) {
             throw new Error('Queue is empty');
         }
-        const value = this.dequeue.last.value;
+        const value = this.tail;
         this.dequeue.pop();
 
         this.#dequeueLength--;
@@ -59,7 +59,7 @@ class Dequeue {
         if (!this.dequeue.first) {
             throw new Error('Queue is empty');
         }
-        const value = this.dequeue.first.value;
+        const value = this.head;
 
         this.dequeue.shift();
         this.#dequeueLength--;

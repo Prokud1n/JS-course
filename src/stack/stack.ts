@@ -1,17 +1,18 @@
 import {LinkedList} from "../linked-list";
+import * as Interfaces from "./interfaces";
 
-class Stack {
-    stack: LinkedList
+class Stack<T> implements Interfaces.Stack<T>{
+    stack: LinkedList<T>
 
     constructor() {
         this.stack = new LinkedList();
     }
 
     get head() {
-        return this.stack.last.value;
+        return this.stack.last?.value ?? null;
     }
 
-    push = (value) => {
+    push = (value: T) => {
         this.stack.add(value);
     }
 

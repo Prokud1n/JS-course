@@ -1,52 +1,15 @@
-// const a = {
-//     prev: null,
-//     next: b,
-//     value: 1,
-// }
-//
-// const b = {
-//     prev: a,
-//     next: c,
-//     value: 2,
-// }
-//
-//
-// const c = {
-//     prev: b,
-//     next: d,
-//     value: 3,
-// }
-//
-// const d = {
-//     prev: c,
-//     next: null,
-//     value: 4,
-// }
+import {LinkedItem} from "./linked-item";
+import * as Interfaces from "./interface";
 
-
-class LinkedItem {
-    value = null;
-    prev = null;
-    next = null;
-    constructor(value) {
-        this.value = value;
-    }
-}
-
-class LinkedList {
+class LinkedList<T> implements Interfaces.LinkedList<T>{
     first = null;
     last = null;
-    current = null;
-
-    get next() {
-        return this.current.next;
-    }
 
     get isEmpty() {
         return this.first == null;
     }
 
-    add = (value) => {
+    add = (value: T) => {
         const item = new LinkedItem(value);
         if (this.first == null) {
             this.first = item;
@@ -88,11 +51,19 @@ class LinkedList {
     }
 
     pop = () => {
-        return this.delete(this.last);
+        const value = this.last.value;
+
+        this.delete(this.last);
+
+        return value;
     }
 
     shift = () => {
-        return this.delete(this.first);
+        const value = this.last.first;
+
+        this.delete(this.first);
+
+        return value;
     }
 
     * values() {

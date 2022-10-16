@@ -1,21 +1,22 @@
 import {LinkedList} from "../linked-list";
+import * as Interfaces from "./interfaces";
 
-export class Queue {
-    queue: LinkedList;
+export class Queue<T> implements Interfaces.Queue<T>{
+    queue: LinkedList<T>;
 
     constructor() {
         this.queue = new LinkedList();
     }
 
-    get head() {
-        return this.queue.first.value;
+    get head(): T {
+        return this.queue.first?.value ?? null;
     }
 
-    get tail() {
-        return this.queue.last.value;
+    get tail(): T {
+        return this.queue.last?.value ?? null;
     }
 
-    push = (value) => {
+    push = (value: T) => {
         this.queue.add(value);
     }
 

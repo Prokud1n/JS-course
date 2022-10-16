@@ -1,4 +1,6 @@
-class Structure {
+import * as Interfaces from "./interfaces";
+
+class Structure<T> implements Interfaces.Structure<T>{
     #structure: Array<any>;
 
     #getIndexByField: any;
