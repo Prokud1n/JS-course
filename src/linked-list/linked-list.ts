@@ -30,18 +30,18 @@ class LinkedList<T> implements Interfaces.LinkedList<T> {
 
             if (prevItem != null) {
                 prevItem.next = linkedItem.next;
+
+                if (isLast) {
+                    this.last = prevItem;
+                }
             }
 
             if (nextItem != null) {
                 nextItem.prev = linkedItem.prev;
-            }
 
-            if (isLast) {
-                this.last = prevItem;
-            }
-
-            if (isFirst) {
-                this.first = nextItem;
+                if (isFirst) {
+                    this.first = nextItem;
+                }
             }
 
             return true;
