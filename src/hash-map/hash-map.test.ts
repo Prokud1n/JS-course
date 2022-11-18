@@ -1,7 +1,7 @@
 import { HashMap } from "./";
 
 test('linked-list adding values', () => {
-    const map = new HashMap();
+    const map = new HashMap(5);
 
     map.set('foo', 'bar');
     map.set(10, 'bla');

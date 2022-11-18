@@ -16,7 +16,7 @@ class HashMap {
     }
 
     set = (key, value) => {
-
+        this.#keyToIndex(key);
     }
 
     get = (key) => {
