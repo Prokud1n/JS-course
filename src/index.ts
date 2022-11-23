@@ -1,5 +1,6 @@
-import {take, random, enumerate, filter} from "./iterators";
+import { Range } from "./range"
 
+export {take, random, enumerate, filter} from "./iterators";
 export { Result } from "./result";
 export {DynamicArrayBasedLinkedList} from "./dynamic-array-based-linked-list";
 export { Structure } from "./structure"
@@ -8,10 +9,11 @@ export { Queue } from "./queue"
 export { Dequeue } from "./dequeue";
 export { Stack } from "./stack";
 
-const randomInt = random(0, 100);
+const symbolRange = new Range('a', 'f');
 
-const iter = take(enumerate(filter(randomInt, (el) => el < 10)), 10);
+console.log(Array.from(symbolRange)); // ['a', 'b', 'c', 'd', 'e', 'f']
+console.log(Array.from(symbolRange.reverse())); // ['a', 'b', 'c', 'd', 'e', 'f']
 
-for (const el of iter) {
-    console.log(el);
-}
+const numberRange = new Range(-5, 1);
+
+console.log(Array.from(numberRange.reverse())); // [1, 0, -1, -2, -3, -4, -5]
