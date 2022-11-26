@@ -18,3 +18,20 @@ export function filter(iter: IterableIterator<unknown>, callback: (value: unknow
 
     }
 }
+
+ function filter2(iter: IterableIterator<unknown>, callback: (value: unknown) => boolean): IterableIterator<unknown> {
+    return {
+        next() {
+            let result;
+
+            do {
+                result = iter.next();
+            } while (!callback(result.value))
+
+            return result;
+        },
+        [Symbol.iterator]() {
+            return this;
+        }
+    }
+ }
