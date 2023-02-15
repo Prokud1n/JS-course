@@ -25,5 +25,36 @@ export function seq(...args) {
             return this;
         }
     }
+}
 
+function seq2(...iterables) {
+    const argIter = iterables[Symbol.iterator]();
+
+    let argCursor = argIter.next();
+    let cursor;
+
+    return {
+        [Symbol.iterator]() {
+            return this;
+        },
+        next() {
+            while(true) {
+                if (argCursor.done) {
+                    return { done: true, value: undefined };
+                }
+
+                cursor ??= argCursor.value[Symbol.iterator]();
+
+                const result = cursor.next();
+
+                if (result.done) {
+                    argCursor = argIter.next();
+                    cursor = undefined;
+                    continue;
+                }
+
+                return result;
+            }
+        }
+    }
 }

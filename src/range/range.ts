@@ -1,9 +1,9 @@
-class Range {
+class Range<T extends string | number> {
     #from: number;
     #to: number;
     #rangeType: 'string' | 'number';
-
-    constructor(from: string | number, to: string | number) {
+ 
+    constructor(from: T, to: T) {
         if (typeof from === "number" && typeof to === "number") {
             this.#from = from;
             this.#to = to;
